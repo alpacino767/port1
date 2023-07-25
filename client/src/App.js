@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Route, BrowserRouter as Router, Routes, useParams} from 'react-router-dom'
+import {Route, Routes} from 'react-router-dom'
 import Landing from './Pages/Landing';
 import {Dashboard, SignIn, SignUp, Error,
   ProtectedRoute,Forgot,Reset

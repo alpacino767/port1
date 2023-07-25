@@ -1,7 +1,6 @@
 import React from 'react'
 import { useAppContext } from "../context/appContext";
-import { useNavigate } from 'react-router-dom'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 
 
@@ -16,11 +15,8 @@ const initialState = {
 }
 
 const Dashboard = () => {
-
-
-  const navigate = useNavigate()
-  const [values, setValues] = useState(initialState)
-  const { user,showAlert, isLoading, displayAlert, registerUser, loginUser,logoutUser } = useAppContext()
+  // const [values, setValues] = useState(initialState)
+  const { logoutUser } = useAppContext()
 
   
   return (
