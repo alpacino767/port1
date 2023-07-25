@@ -6,6 +6,8 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import errorHandlerMiddleware from "./middleware/error-handler.js"
+
+
 import cookieParser from "cookie-parser"
 
 const app = express()
@@ -16,7 +18,7 @@ if(process.env.NODE_ENV !== "production"){
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// only when ready to deploy
+// for deployment
 app.use(express.static(path.resolve(__dirname, './client/build')))
 
 app.set("view engine", "ejs")
@@ -49,7 +51,7 @@ const port = process.env.PORT || 8000
 
 app.use("/api/v1/auth", authRouter)
 
-// only when ready to deploy
+// for deployment
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, './client/build', 'index.html'));
   });
@@ -59,10 +61,12 @@ app.use(errorHandlerMiddleware)
 
 
 const start = async () => {
+    console.log("start");
     try {
         await connectDB(process.env.MONGO_URL)
         app.listen(port, () => {
-            (`Server is runing on ${port}...`);
+
+           console.log(`Server is running on ${port}...`);
         })
     } catch (error) {
         (error);
